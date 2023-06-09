@@ -28,13 +28,18 @@ const currentUser = []
 const events = [
     {
       id: 1,
-      title: 'Event 1',
+      title: 'Hackathon',
       description: 'Description of Event 1'
     },
     {
       id: 2,
-      title: 'Event 2',
+      title: 'Quiz Bowl',
       description: 'Description of Event 2'
+    },
+    {
+        id: 3,
+        title: 'Mobile Legends',
+        description: 'Description of Event 3'
     }
   ];
 
@@ -99,10 +104,6 @@ app.get('/register', checkNotAuthenticated, (req, res) => {
 })
 // End Routes
 
-// app.delete('/logout', (req, res) => {
-//     req.logOut()
-//     res.redirect('/login')
-//   })
 
 app.delete("/logout", (req, res) => {
     req.logout(req.user, err => {
@@ -126,12 +127,10 @@ function checkNotAuthenticated(req, res, next){
     next()
 }
 
-// Para handle sa registration form submission
+// to handle registration form submission
 app.post('/submit-registration', (req, res) => {
-    const { eventId } = req.body
+    const { eventId, name, email } = req.body
     const event = events.find(event => event.id === parseInt(eventId))
-    var name = currentUser.name
-    var email = currentUser.email
     if (event) {
       const registration = {
         name: name,

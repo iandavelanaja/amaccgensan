@@ -16,58 +16,53 @@
 <section class="background-radial-gradient overflow-hidden">
     <style>
       .background-radial-gradient {
-        background-color: hsl(218, 41%, 15%);
+        background-color: hsl(0, 0%, 100%);
         background-image: radial-gradient(650px circle at 0% 0%,
-            hsl(218, 41%, 35%) 15%,
-            hsl(218, 41%, 30%) 35%,
-            hsl(218, 41%, 20%) 75%,
-            hsl(218, 41%, 19%) 80%,
-            transparent 100%),
+            hsl(0, 0%, 100%) 15%,
+            hsl(0, 0%, 100%) 35%,
+            hsl(0, 0%, 100%) 75%,
+            hsl(0, 0%, 100%) 80%,
+            transparent 200%),
           radial-gradient(1250px circle at 100% 100%,
-            hsl(218, 41%, 45%) 15%,
-            hsl(218, 41%, 30%) 35%,
-            hsl(218, 41%, 20%) 75%,
-            hsl(218, 41%, 19%) 80%,
-            transparent 100%);
+            hsl(0, 0%, 100%) 15%,
+            hsl(0, 0%, 100%) 35%,
+            hsl(0, 0%, 100%) 75%,
+            hsl(0, 0%, 100%) 80%,
+            transparent 200%);
       }
-  
-      #radius-shape-1 {
-        height: 220px;
-        width: 220px;
-        top: -60px;
-        left: -130px;
-        background: radial-gradient(#44006b, #ad1fff);
-        overflow: hidden;
+      .size{
+        min-width: 370px;
+        min-height: 200px; 
+        max-height: 300px;
+        max-width: 300px;
+        margin-right: 40px;
+        
       }
-  
-      #radius-shape-2 {
-        border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
-        bottom: -60px;
-        right: -110px;
-        width: 300px;
-        height: 300px;
-        background: radial-gradient(#44006b, #ad1fff);
-        overflow: hidden;
+      .i{
+        top: 40px;
+        margin-right: 40px;
       }
   
       .bg-glass {
-        background-color: hsla(0, 0%, 100%, 0.9) !important;
+        background-color: hsl(0, 94%, 19%) !important;
         backdrop-filter: saturate(200%) blur(25px);
+      }
+      .form-label{
+        color:#ffffff
       }
     </style>
   
     <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+      <img class="size" src="https://static1.eyellowpages.ph/uploads/yp_business_photo/photo/390878/large_AMA_LOGO.png">
       <div class="row gx-lg-5 align-items-center mb-5">
         <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
-          <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
-            Welcome to <br />
-            <span style="color: hsl(218, 81%, 75%)">Desphixs</span>
+          <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(0, 0%, 0%)">
+            Welcome  <br />
+            <span style="color: hsl(0, 0%, 0%)">students</span>
           </h1>
-          <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Temporibus, expedita iusto veniam atque, magni tempora mollitia
-            dolorum consequatur nulla, neque debitis eos reprehenderit quasi
-            ab ipsum nisi dolorem modi. Quos?
+          <p class="mb-4 opacity-70" style="color: hsl(0, 0%, 0%)">
+            You can also study with us for free:
+            www.amaes.tv
           </p>
         </div>
   
@@ -86,7 +81,7 @@
                       <strong><%= messages.error %> </strong>
                     </div>
                   <% } %> 
-                  <h1 class="mb-3 h3">Register</h1>
+                  <h1 class="mb-3 h3" style="color: rgb(245, 245, 245);">Registration</h1>
                   <div class="col-md-12 mb-4">
                     <div class="form-outline">
                       <input type="text" name="name" id="form3Example2" class="form-control" />
@@ -99,6 +94,12 @@
                 <div class="form-outline mb-4">
                   <input type="email" name="email" id="form3Example3" class="form-control" />
                   <label class="form-label" for="form3Example3">Email address</label>
+                </div>
+
+                <!-- USN input -->
+                <div class="form-outline mb-4">
+                  <input type="usn" name="usn" id="form3Example4" class="form-control" />
+                  <label class="form-label" for="form3Example4">USN</label>
                 </div>
   
                 <!-- Password input -->
@@ -114,7 +115,8 @@
   
                 <!-- Register buttons -->
                 <div class="text-center">
-                  <p>Already have an account? <a href="/login">Login</a></p>
+                  <label class="form-label"for="form3Example5">Already have an account?</label>
+                  <a href="/login">Login</a></p>
                 
                 </div>
               </form>

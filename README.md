@@ -1,3 +1,3 @@
-# Node.Js-Authentication-System
+# AMACC_GENSAN_CAMPUS_DASHBOARD
 
 Login, Register and Logout System Using Node.JS, Express, Passport and More...

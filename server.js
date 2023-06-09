@@ -23,23 +23,30 @@ initializePassport(
 
 const users = []
 
-const currentUser = []
+const currentUser = {}
+
 
 const events = [
     {
       id: 1,
-      title: 'Event 1',
+      title: 'Hackathon',
       description: 'Description of Event 1'
     },
     {
       id: 2,
-      title: 'Event 2',
+      title: 'Quiz Bowl',
       description: 'Description of Event 2'
+    },
+    {
+        id: 3,
+        title: 'Mobile Legends',
+        description: 'Description of Event 3'
     }
   ];
 
 
 const registrations = [];
+const registration = {}
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({extended: false}))
@@ -53,14 +60,12 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride("_method"))
 
-// Configuring the register post functionality
 app.post("/login", checkNotAuthenticated, passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/login",
     failureFlash: true
 }))
 
-// Configuring the register post functionality
 app.post("/register", checkNotAuthenticated, async (req, res) => {
 
     try {
@@ -72,11 +77,6 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
             password: hashedPassword,
         })
         console.log(users); // Display newly registered in the console
-        currentUser.push( {
-            name: req.body.name,
-            email: req.body.email,
-        })
-        console.log(currentUser)
         res.redirect("/login")
         
     } catch (e) {
@@ -86,8 +86,11 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
 })
 
 // Routes
-app.get('/', checkAuthenticated, (req, res) => {
+app.get('/', checkAuthenticated, (req, res) => { 
     res.render("index.ejs", {name: req.user.name, events,registrations})
+    currentUser.name = req.user.name
+    currentUser.email = req.user.email
+    console.log(currentUser)
 })
 
 app.get('/login', checkNotAuthenticated, (req, res) => {
@@ -99,13 +102,10 @@ app.get('/register', checkNotAuthenticated, (req, res) => {
 })
 // End Routes
 
-// app.delete('/logout', (req, res) => {
-//     req.logOut()
-//     res.redirect('/login')
-//   })
 
 app.delete("/logout", (req, res) => {
     req.logout(req.user, err => {
+        delete currentUser
         if (err) return next(err)
         res.redirect("/")
     })
@@ -113,7 +113,6 @@ app.delete("/logout", (req, res) => {
 
 function checkAuthenticated(req, res, next){
     if(req.isAuthenticated()){
-        
         return next()
     }
     res.redirect("/login")
@@ -126,25 +125,22 @@ function checkNotAuthenticated(req, res, next){
     next()
 }
 
-// Para handle sa registration form submission
+// to handle registration form submission
 app.post('/submit-registration', (req, res) => {
-    const { eventId } = req.body
-    const event = events.find(event => event.id === parseInt(eventId))
-    var name = currentUser.name
-    var email = currentUser.email
+    const { eventId } = req.body;
+    const event = events.find(event => event.id === parseInt(eventId));
+
     if (event) {
-      const registration = {
-        name: name,
-        email: email,
-        eventTitle: event.title
-      };
-      registrations.push(registration)
+      registration.name = currentUser.name
+      registration.email = currentUser.email
+      registration.eventId = eventId
+      registrations.push(registration);
+      console.log(registration);
       res.redirect('/')
-      console.log(registration)
     } else {
       res.status(404).send('Event not found');
     }
   });
 
 
-app.listen(3000)
+app.listen(3000) 

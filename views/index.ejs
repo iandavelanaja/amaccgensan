@@ -21,6 +21,7 @@
       body {
         font-family: Arial, sans-serif;
         padding: 20px;
+        background-color: beige;
       }
 
       h1 {
@@ -39,10 +40,6 @@
       ul {
         list-style-type: none;
         color: black;
-      }
-
-      body{
-        background-color: beige;
       }
 
       .bd-placeholder-img {
@@ -124,7 +121,7 @@
         <header class="mb-auto">
           <div>
             <!-- <h3 class="float-md-start mb-0 text-dark">AMACC GENSAN</h3> -->
-            <img height="60px" src="https://upload.wikimedia.org/wikipedia/en/c/c3/AMA_Computer_University_%28logo%29.svg" alt="">
+            <a href="/views/index.ejs"><img height="60px" src="https://upload.wikimedia.org/wikipedia/en/c/c3/AMA_Computer_University_%28logo%29.svg" alt=""></a>
             <nav class="nav nav-masthead justify-content-center float-md-end">
               <form action="/logout?_method=DELETE" method="POST">
                 <button class="nav-link fw-bold py-1 px-0 btn p=3 btn-dark text-white" type="submit"  >Logout</button>
